@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class RmTextFormField extends StatelessWidget {
   final TextEditingController? controller;
@@ -49,7 +50,7 @@ class RmTextFormField extends StatelessWidget {
     this.contentPaddingLeft = 10.0,
     this.contentPaddingTop = 10.0,
     this.contentPaddingBottom = 10.0,
-    required this.isDarkMode,
+    this.isDarkMode = false,
     this.constrainPrefix = true,
     this.suffixIcon,
     this.focusNode,
@@ -57,7 +58,8 @@ class RmTextFormField extends StatelessWidget {
     this.prefixSize,
     this.suffixSize,
     this.onChanged,
-    this.maxLength, this.minLines,
+    this.maxLength,
+    this.minLines,
     this.maxLines = 1,
     this.filled,
     this.fillColor,
@@ -76,15 +78,15 @@ class RmTextFormField extends StatelessWidget {
     return TextFormField(
       focusNode: focusNode,
       controller: controller,
-      style: theme.textTheme.bodyLarge
-          ?.copyWith(fontSize: 18),
+      style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18),
       readOnly: isDropDown ? true : isReadOnly,
       keyboardType: textInputType,
       textInputAction: textInputAction,
       obscureText: obscureText,
       onChanged: onChanged,
       maxLength: maxLength,
-      minLines: minLines, maxLines: maxLines,
+      minLines: minLines,
+      maxLines: maxLines,
       validator: validator,
       onFieldSubmitted: onFieldSubmitted,
       onTap: onTap,
@@ -102,105 +104,92 @@ class RmTextFormField extends StatelessWidget {
         filled: filled,
         fillColor: fillColor,
         hintStyle: theme.textTheme.bodySmall?.copyWith(
-            fontSize: 15,
-            fontWeight: FontWeight.w300,
-            color: hintTextColor),
-        errorStyle: theme.textTheme.bodySmall?.copyWith(
-            color: Colors.red,
-            fontSize: 12),
+            fontSize: 15, fontWeight: FontWeight.w300, color: hintTextColor),
+        errorStyle: theme.textTheme.bodySmall
+            ?.copyWith(color: Colors.red, fontSize: 12),
         suffixIcon: isDropDown
             ? Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const SizedBox(
-              width: 25,
-              height: 25,
-              child: Icon(Icons.arrow_downward_rounded),
-            ),
-            SizedBox(
-              width: 35,
-              height: 35,
-              child: suffixIcon!,
-            )
-          ],
-        )
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const SizedBox(
+                    width: 25,
+                    height: 25,
+                    child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Icon(Icons.arrow_forward_ios_rounded)),
+                  ),
+                  Visibility(
+                    visible: suffixIcon != null,
+                    child: suffixSize != null
+                        ? SizedBox(
+                            width: 35,
+                            height: 35,
+                            child: suffixIcon,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                  const Gap(5),
+                ],
+              )
             : Center(child: suffixIcon),
         errorMaxLines: 2,
         suffixIconConstraints: BoxConstraints(
-            minHeight:
-            suffixSize != null ? suffixSize! : 49,
+            minHeight: suffixSize != null ? suffixSize! : 49,
             minWidth: isDropDown
                 ? 70
                 : suffixSize != null
-                ? suffixSize!
-                : 49,
-            maxHeight:
-            suffixSize != null ? suffixSize! : 49,
+                    ? suffixSize!
+                    : 49,
+            maxHeight: suffixSize != null ? suffixSize! : 49,
             maxWidth: isDropDown
                 ? 70
                 : suffixSize != null
-                ? suffixSize!
-                : 49),
+                    ? suffixSize!
+                    : 49),
         prefixIconConstraints: constrainPrefix
             ? BoxConstraints(
-            minHeight: prefixSize != null
-                ? prefixSize!
-                : 16,
-            minWidth: prefixSize != null
-                ? prefixSize!
-                : 16,
-            maxHeight: prefixSize != null
-                ? prefixSize!
-                : 16,
-            maxWidth: prefixSize != null
-                ? prefixSize!
-                : 16)
+                minHeight: prefixSize != null ? prefixSize! : 16,
+                minWidth: prefixSize != null ? prefixSize! : 16,
+                maxHeight: prefixSize != null ? prefixSize! : 16,
+                maxWidth: prefixSize != null ? prefixSize! : 16)
             : null,
         prefixIcon: prefixIcon,
         enabledBorder: hideBorder
             ? noBorder
             : OutlineInputBorder(
-          borderRadius: BorderRadius.circular(fieldBorderRadius),
-          borderSide: BorderSide(
-              color: isDarkMode
-                  ? const Color(0xff797979)
-                  : const Color(0xFFCBC8C8),
-              width: isDarkMode
-                  ? 1
-                  : 0.5),
-        ),
+                borderRadius: BorderRadius.circular(fieldBorderRadius),
+                borderSide: BorderSide(
+                    color: isDarkMode
+                        ? const Color(0xff797979)
+                        : const Color(0xFFCBC8C8),
+                    width: isDarkMode ? 1 : 0.5),
+              ),
         focusedBorder: hideBorder
             ? noBorder
             : OutlineInputBorder(
-          borderRadius: BorderRadius.circular(fieldBorderRadius),
-          borderSide: BorderSide(
-              color: const Color(0xFFCBC8C8),
-              width: isDarkMode
-                  ? 1
-                  : 0.5),
-        ),
+                borderRadius: BorderRadius.circular(fieldBorderRadius),
+                borderSide: BorderSide(
+                    color: const Color(0xFFCBC8C8),
+                    width: isDarkMode ? 1 : 0.5),
+              ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(fieldBorderRadius),
           borderSide: BorderSide(
-              color: theme.colorScheme.error,
-              width: isDarkMode ? 1 : 0.5),
+              color: theme.colorScheme.error, width: isDarkMode ? 1 : 0.5),
         ),
         focusedErrorBorder: hideBorder
             ? noBorder
             : OutlineInputBorder(
-          borderRadius: BorderRadius.circular(fieldBorderRadius),
-          borderSide: BorderSide(
-              color: theme.colorScheme.error,
-              width: isDarkMode
-                  ? 1
-                  : 0.5),
-        ),
+                borderRadius: BorderRadius.circular(fieldBorderRadius),
+                borderSide: BorderSide(
+                    color: theme.colorScheme.error,
+                    width: isDarkMode ? 1 : 0.5),
+              ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(fieldBorderRadius),
           borderSide: BorderSide(
-              color: theme.disabledColor,
-              width: isDarkMode ? 1 : 0.5),
+              color: theme.disabledColor, width: isDarkMode ? 1 : 0.5),
         ),
       ),
     );

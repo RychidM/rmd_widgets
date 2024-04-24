@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rmdev_widgets/text_fields/rm_textfield.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
-class InputTextField extends StatelessWidget {
+class RmLabelTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
   final String label;
@@ -15,6 +15,7 @@ class InputTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isDropDown;
   final bool isReadOnly;
+  final bool obscureText;
   final bool useSuffixShadow;
   final bool? filled;
   final Color? fillColor;
@@ -34,12 +35,12 @@ class InputTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final Function(String)? onFieldSubmitted;
 
-  const InputTextField({
-    Key? key,
-    required this.label,
+  const RmLabelTextField({
+    super.key,
+    this.label = '',
     this.controller,
     this.isLabelHorizontalLabel = false,
-    required this.isDarkMode,
+    this.isDarkMode = false,
     this.hintText,
     this.hintTextColor,
     this.labelTextColor,
@@ -53,6 +54,7 @@ class InputTextField extends StatelessWidget {
     this.labelFontSize,
     this.hideBorder = false,
     this.showLabel = true,
+    this.obscureText = false,
     this.suffix,
     this.prefix,
     this.filled,
@@ -65,7 +67,7 @@ class InputTextField extends StatelessWidget {
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
     required this.onInputChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +111,7 @@ class InputTextField extends StatelessWidget {
       isDropDown: isDropDown,
       hintText: hintText ?? '',
       fillColor: fillColor,
+      obscureText: obscureText,
       focusNode: focusNode,
       onFieldSubmitted: onFieldSubmitted,
       filled: filled,
@@ -125,14 +128,14 @@ class InputTextField extends StatelessWidget {
       suffixIcon: isDarkMode
           ? suffix
           : useSuffixShadow
-          ? (suffix != null
-          ? SimpleShadow(
-          opacity: 0.27,
-          offset: const Offset(-4, 4),
-          sigma: 3,
-          child: suffix!)
-          : null)
-          : suffix,
+              ? (suffix != null
+                  ? SimpleShadow(
+                      opacity: 0.27,
+                      offset: const Offset(-4, 4),
+                      sigma: 3,
+                      child: suffix!)
+                  : null)
+              : suffix,
       onChanged: (value) => onInputChanged(value),
     );
   }
@@ -141,18 +144,14 @@ class InputTextField extends StatelessWidget {
     return Visibility(
       visible: showLabel,
       child: SizedBox(
-        width: isLabelHorizontalLabel
-            ? 50
-            : double.maxFinite,
+        width: isLabelHorizontalLabel ? 50 : double.maxFinite,
         child: AutoSizeText(
           label,
           style: labelTextStyle ??
               Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: isDarkMode
-                      ? (labelDarkModeTextColor ??
-                      const Color(0xff2CA5DF))
-                      : (labelTextColor ??
-                      const Color(0xFF23404E)),
+                      ? (labelDarkModeTextColor ?? const Color(0xff2CA5DF))
+                      : (labelTextColor ?? const Color(0xFF23404E)),
                   fontWeight: labelFontWeight ?? FontWeight.w600,
                   fontSize: labelFontSize ?? 15),
         ),

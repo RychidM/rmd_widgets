@@ -34,6 +34,7 @@ class RmLabelTextField extends StatelessWidget {
   final double prefixSize;
   final FocusNode? focusNode;
   final Function(String)? onFieldSubmitted;
+  final Function()? onEditingComplete;
 
   const RmLabelTextField({
     super.key,
@@ -47,6 +48,7 @@ class RmLabelTextField extends StatelessWidget {
     this.labelDarkModeTextColor,
     this.validator,
     this.onTap,
+    this.onEditingComplete,
     this.fieldBorderRadius = 5.7,
     this.labelFontWeight,
     this.isReadOnly = false,
@@ -119,6 +121,7 @@ class RmLabelTextField extends StatelessWidget {
       onTap: onTap,
       prefixIcon: prefix,
       constrainPrefix: true,
+      onEditingComplete: onEditingComplete,
       validator: validator,
       hideBorder: hideBorder,
       textInputAction: textInputAction,

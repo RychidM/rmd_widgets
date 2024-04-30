@@ -33,6 +33,7 @@ class RmTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final int? minLines;
   final int maxLines;
+  final Function()? onEditingComplete;
 
   const RmTextFormField({
     super.key,
@@ -52,6 +53,7 @@ class RmTextFormField extends StatelessWidget {
     this.contentPaddingBottom = 10.0,
     this.isDarkMode = false,
     this.constrainPrefix = true,
+    this.onEditingComplete,
     this.suffixIcon,
     this.focusNode,
     this.prefixIcon,
@@ -89,6 +91,7 @@ class RmTextFormField extends StatelessWidget {
       maxLines: maxLines,
       validator: validator,
       onFieldSubmitted: onFieldSubmitted,
+      onEditingComplete: onEditingComplete,
       onTap: onTap,
       enableInteractiveSelection: true,
       cursorColor: isDarkMode ? Colors.white : Colors.black,

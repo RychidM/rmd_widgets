@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 
 class RmTextFormField extends StatelessWidget {
@@ -23,6 +24,7 @@ class RmTextFormField extends StatelessWidget {
   final double contentPaddingRight;
   final double contentPaddingTop;
   final double contentPaddingBottom;
+  final List<TextInputFormatter>? inputFormatters;
   final InputBorder noBorder;
   final bool? filled;
   final Color? fillColor;
@@ -53,6 +55,7 @@ class RmTextFormField extends StatelessWidget {
     this.contentPaddingBottom = 10.0,
     this.isDarkMode = false,
     this.constrainPrefix = true,
+    this.inputFormatters,
     this.onEditingComplete,
     this.suffixIcon,
     this.focusNode,
@@ -68,9 +71,7 @@ class RmTextFormField extends StatelessWidget {
     this.validator,
     this.hideBorder = false,
     this.onFieldSubmitted,
-    this.noBorder = const OutlineInputBorder(
-      borderSide: BorderSide.none,
-    ),
+    this.noBorder = InputBorder.none,
   });
 
   @override
@@ -90,6 +91,7 @@ class RmTextFormField extends StatelessWidget {
       minLines: minLines,
       maxLines: maxLines,
       validator: validator,
+      inputFormatters: inputFormatters,
       onFieldSubmitted: onFieldSubmitted,
       onEditingComplete: onEditingComplete,
       onTap: onTap,

@@ -16,7 +16,7 @@ class RmFormValidator {
     return MultiValidator(
         [CardExpValidation(expDate, errorText: "Provide a valid exp date")]);
   }
-
+  
   static MultiValidator validateCardNumber = MultiValidator([
     RequiredValidator(errorText: "Required"),
     CardNumberValidator(errorText: "Provide a valid card number"),
@@ -29,11 +29,32 @@ class RmFormValidator {
     ]);
   }
 
+  static MultiValidator validatePasswordMatch(String password, String confirmPassword) {
+    return MultiValidator([
+      RequiredValidator(errorText: "Required"),
+      PasswordMatchValidator(password, confirmPassword, errorText: "Passwords do not match"),
+    ]);
+  }
+
    static MultiValidator phoneNumberValidator = MultiValidator([
     RequiredValidator(errorText: "Required"),
     PatternValidator(RmStrings.rPhoneNumberRegex,
         errorText: "Invalid phone number"),
   ]);
+}
+
+class PasswordMatchValidator extends TextFieldValidator {
+  final String password;
+  final String confirmPassword;
+
+  PasswordMatchValidator(this.password, this.confirmPassword,
+      {required String errorText})
+      : super(errorText);
+
+  @override
+  bool isValid(String? value) {
+    return password == confirmPassword;
+  }
 }
 
 class AmountValidator extends TextFieldValidator {

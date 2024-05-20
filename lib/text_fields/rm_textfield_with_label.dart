@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rmdev_widgets/text_fields/rm_textfield.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
@@ -25,6 +26,7 @@ class RmLabelTextField extends StatelessWidget {
   final Function onInputChanged;
   final Widget? suffix;
   final Widget? prefix;
+  final List<TextInputFormatter>? inputFormatters;
   final bool isDarkMode;
   final TextStyle? labelTextStyle;
   final Color? hintTextColor;
@@ -61,6 +63,7 @@ class RmLabelTextField extends StatelessWidget {
     this.prefix,
     this.filled,
     this.onFieldSubmitted,
+    this.inputFormatters,
     this.focusNode,
     this.prefixSize = 24,
     this.fillColor,
@@ -122,6 +125,7 @@ class RmLabelTextField extends StatelessWidget {
       prefixIcon: prefix,
       constrainPrefix: true,
       onEditingComplete: onEditingComplete,
+      inputFormatters: inputFormatters,
       validator: validator,
       hideBorder: hideBorder,
       textInputAction: textInputAction,

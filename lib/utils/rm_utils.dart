@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class RmUtils {
   static String maskString(String input,
       {int start = 4, int? end = 8, String maskChar = '*'}) {
@@ -9,5 +11,10 @@ class RmUtils {
     final mask = maskChar * maskLength;
 
     return input.replaceRange(start, end, mask);
+  }
+
+    static String parseAmount(double amount) {
+    final formatter = NumberFormat("#,##0.00");
+    return formatter.format(amount);
   }
 }

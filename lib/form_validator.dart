@@ -16,27 +16,34 @@ class RmFormValidator {
     return MultiValidator(
         [CardExpValidation(expDate, errorText: "Provide a valid exp date")]);
   }
-  
+
   static MultiValidator validateCardNumber = MultiValidator([
     RequiredValidator(errorText: "Required"),
     CardNumberValidator(errorText: "Provide a valid card number"),
   ]);
 
-  static MultiValidator validateAmount(String amount, [double minAmount = 1.0]) {
+  static MultiValidator validateAmount(String amount,
+      [double minAmount = 1.0]) {
+    return MultiValidator(
+      [
+        RequiredValidator(errorText: "Required"),
+        AmountValidator(amount,
+            errorText: "Amount should not be less than $minAmount",
+            minAmount: minAmount),
+      ],
+    );
+  }
+
+  static MultiValidator validatePasswordMatch(
+      String password, String confirmPassword) {
     return MultiValidator([
       RequiredValidator(errorText: "Required"),
-      AmountValidator(amount, errorText: "Provide a valid amount", minAmount: minAmount),
+      PasswordMatchValidator(password, confirmPassword,
+          errorText: "Passwords do not match"),
     ]);
   }
 
-  static MultiValidator validatePasswordMatch(String password, String confirmPassword) {
-    return MultiValidator([
-      RequiredValidator(errorText: "Required"),
-      PasswordMatchValidator(password, confirmPassword, errorText: "Passwords do not match"),
-    ]);
-  }
-
-   static MultiValidator phoneNumberValidator = MultiValidator([
+  static MultiValidator phoneNumberValidator = MultiValidator([
     RequiredValidator(errorText: "Required"),
     PatternValidator(RmStrings.rPhoneNumberRegex,
         errorText: "Invalid phone number"),

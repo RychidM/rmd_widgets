@@ -7,20 +7,27 @@ class RmFormValidator {
 
   static NoValidation dontValidate = NoValidation();
 
-  static MultiValidator emailValidator = MultiValidator([
-    RequiredValidator(errorText: "Required"),
-    EmailValidator(errorText: "Provide a valid email address"),
-  ]);
+  static MultiValidator emailValidator = MultiValidator(
+    [
+      RequiredValidator(errorText: "Required"),
+      EmailValidator(errorText: "Provide a valid email address"),
+    ],
+  );
 
   static MultiValidator validateCardExp(String expDate) {
     return MultiValidator(
-        [CardExpValidation(expDate, errorText: "Provide a valid exp date")]);
+      [
+        CardExpValidation(expDate, errorText: "Provide a valid exp date"),
+      ],
+    );
   }
 
-  static MultiValidator validateCardNumber = MultiValidator([
-    RequiredValidator(errorText: "Required"),
-    CardNumberValidator(errorText: "Provide a valid card number"),
-  ]);
+  static MultiValidator validateCardNumber = MultiValidator(
+    [
+      RequiredValidator(errorText: "Required"),
+      CardNumberValidator(errorText: "Provide a valid card number"),
+    ],
+  );
 
   static MultiValidator validateAmount(String amount,
       [double minAmount = 1.0]) {
@@ -36,18 +43,22 @@ class RmFormValidator {
 
   static MultiValidator validatePasswordMatch(
       String password, String confirmPassword) {
-    return MultiValidator([
-      RequiredValidator(errorText: "Required"),
-      PasswordMatchValidator(password, confirmPassword,
-          errorText: "Passwords do not match"),
-    ]);
+    return MultiValidator(
+      [
+        RequiredValidator(errorText: "Required"),
+        PasswordMatchValidator(password, confirmPassword,
+            errorText: "Passwords do not match"),
+      ],
+    );
   }
 
-  static MultiValidator phoneNumberValidator = MultiValidator([
-    RequiredValidator(errorText: "Required"),
-    PatternValidator(RmStrings.rPhoneNumberRegex,
-        errorText: "Invalid phone number"),
-  ]);
+  static MultiValidator phoneNumberValidator = MultiValidator(
+    [
+      RequiredValidator(errorText: "Required"),
+      PatternValidator(RmStrings.rPhoneNumberRegex,
+          errorText: "Invalid phone number"),
+    ],
+  );
 }
 
 class PasswordMatchValidator extends TextFieldValidator {

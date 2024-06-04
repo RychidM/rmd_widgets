@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+/// Creates a customizable button with a loading spinner.
 class RmButton extends StatelessWidget {
   final Widget? child;
   final String? label;

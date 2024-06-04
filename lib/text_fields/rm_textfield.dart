@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 
+/// A customizable text field without a label.
 class RmTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String hintText;

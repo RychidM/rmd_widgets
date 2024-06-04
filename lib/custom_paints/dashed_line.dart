@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Paints a dashed line with the given [dashWidth], [dashSpace], [color], and [strokeWidth]. 
 class DashedLinePainter extends CustomPainter {
   final double dashWidth;
   final double dashSpace;

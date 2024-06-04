@@ -61,59 +61,58 @@ class RmButton extends StatelessWidget {
         onPressed: isButtonDisabled
             ? null
             : ((isLoading == true)
-            ? () {}
-            : () {
-          HapticFeedback.selectionClick();
-          onTap.call();
-        }),
+                ? () {}
+                : () {
+                    HapticFeedback.selectionClick();
+                    onTap.call();
+                  }),
         style: ElevatedButton.styleFrom(
             disabledForegroundColor: isDarkMode
                 ? Colors.grey.shade800
                 : const Color.fromRGBO(160, 160, 160, 0.57),
-            disabledBackgroundColor: isDarkMode
-                ? Colors.grey.shade600
-                : const Color(0xFFDEE1E7),
+            disabledBackgroundColor:
+                isDarkMode ? Colors.grey.shade600 : const Color(0xFFDEE1E7),
             backgroundColor: isDarkMode ? darkModeColor : color,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  buttonCornerRadius ?? 4),
+              borderRadius: BorderRadius.circular(buttonCornerRadius ?? 4),
             ),
             elevation: isDarkMode ? 0 : elevation),
         child: (isLoading == true)
             ? Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            loader ?? SpinKitThreeBounce(
-              size: 15,
-              color: loadingColor,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              labelLoading ?? '',
-              style: theme.textTheme.bodyMedium!.copyWith(
-                  color: Colors.white,
-                  fontSize: 16),
-            )
-          ],
-        )
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  loader ??
+                      SpinKitThreeBounce(
+                        size: 15,
+                        color: loadingColor,
+                      ),
+                  const SizedBox(width: 10),
+                  Text(
+                    labelLoading ?? '',
+                    style: theme.textTheme.bodyMedium!
+                        .copyWith(color: Colors.white, fontSize: 16),
+                  )
+                ],
+              )
             : (label == '' || label == null)
-            ? child
-            : TextIcon(
-            text: label ?? '',
-            prefix: labelPrefixAsset != null
-                ? Image(
-              image: AssetImage(labelPrefixAsset!),
-              width: 19,
-              height: 19,
-            )
-                : null,
-            textStyle: theme.textTheme.bodyMedium!.copyWith(
-                color: isButtonDisabled
-                    ? const Color.fromRGBO(160, 160, 160, 0.57)
-                    : labelColor,
-                fontSize: labelSize,
-                letterSpacing: .5,
-                fontWeight: fontWeight ?? FontWeight.w600)),
+                ? child
+                : TextIcon(
+                    text: label ?? '',
+                    prefix: labelPrefixAsset != null
+                        ? Image(
+                            image: AssetImage(labelPrefixAsset!),
+                            width: 19,
+                            height: 19,
+                          )
+                        : null,
+                    textStyle: theme.textTheme.bodyMedium!.copyWith(
+                        color: isButtonDisabled
+                            ? const Color.fromRGBO(160, 160, 160, 0.57)
+                            : labelColor,
+                        fontSize: labelSize,
+                        letterSpacing: .5,
+                        fontWeight: fontWeight ?? FontWeight.w600),
+                  ),
       ),
     );
   }

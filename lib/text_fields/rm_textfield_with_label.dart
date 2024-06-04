@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:rmdev_widgets/text_fields/rm_textfield.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
+/// A customizable text field with a label.
 class RmLabelTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;

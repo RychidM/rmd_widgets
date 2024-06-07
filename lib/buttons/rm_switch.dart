@@ -33,7 +33,7 @@ class RmSwitch extends StatelessWidget {
     this.titleTextStyle,
     required this.onToggle,
     this.mainAxisAlignment,
-    required this.isDarkMode,
+    this.isDarkMode = false,
     this.padding = 5.0,
     this.borderRadius = 20.0,
   });

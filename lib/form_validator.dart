@@ -59,6 +59,16 @@ class RmFormValidator {
           errorText: "Invalid phone number"),
     ],
   );
+
+  static MultiValidator phoneNumberCountryCodeValidator = MultiValidator(
+    [
+      RequiredValidator(errorText: RmStrings.rRequiredText),
+      PatternValidator(
+        RmStrings.rPhoneNumberWithoutCtryCodeRegex,
+        errorText: 'Remove country from input',
+      ),
+    ],
+  );
 }
 
 class PasswordMatchValidator extends TextFieldValidator {

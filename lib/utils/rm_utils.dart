@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:intl/intl.dart';
 
 class RmUtils {
@@ -16,5 +18,13 @@ class RmUtils {
     static String parseAmount(double amount) {
     final formatter = NumberFormat("#,##0.00");
     return formatter.format(amount);
+  }
+
+  static Future<InternetConnectionStatus> checkConnectivity() async {
+    if (kDebugMode) {
+      print(
+          'internet connection status is ${await InternetConnectionChecker().connectionStatus}');
+    }
+    return await InternetConnectionChecker().connectionStatus;
   }
 }

@@ -1,4 +1,4 @@
-sealed class StateStatus {
+abstract class StateStatus {
   const StateStatus();
 }
 

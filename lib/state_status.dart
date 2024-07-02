@@ -13,3 +13,9 @@ class ErrorStatusWithException extends StateStatus {
 }
 
 class ErrorOccurredStatus extends StateStatus {}
+
+class ExceptionStatusWithMessage extends StateStatus {
+  final String message;
+
+  const ExceptionStatusWithMessage({required this.message});
+}

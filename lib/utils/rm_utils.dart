@@ -27,4 +27,11 @@ class RmUtils {
     }
     return await InternetConnectionChecker().connectionStatus;
   }
+
+  static Future<bool> hasConnection() async {
+    if(kDebugMode) {
+      print('internet connection status is ${await InternetConnectionChecker().connectionStatus}');
+    }
+    return await InternetConnectionChecker().hasConnection;
+  }
 }

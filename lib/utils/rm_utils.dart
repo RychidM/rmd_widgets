@@ -15,7 +15,7 @@ class RmUtils {
     return input.replaceRange(start, end, mask);
   }
 
-    static String parseAmount(double amount) {
+  static String parseAmount(double amount) {
     final formatter = NumberFormat("#,##0.00");
     return formatter.format(amount);
   }
@@ -28,9 +28,10 @@ class RmUtils {
     return await InternetConnectionChecker().connectionStatus;
   }
 
-  static Future<bool> hasConnection() async {
-    if(kDebugMode) {
-      print('internet connection status is ${await InternetConnectionChecker().connectionStatus}');
+  static Future<bool> hasInternetConnection() async {
+    if (kDebugMode) {
+      print(
+          'internet connection status is ${await InternetConnectionChecker().connectionStatus}');
     }
     return await InternetConnectionChecker().hasConnection;
   }

@@ -41,6 +41,17 @@ class RmFormValidator {
     );
   }
 
+  static MultiValidator strongPasswordValidator = MultiValidator(
+    [
+      RequiredValidator(errorText: "Required"),
+      MinLengthValidator(8, errorText: "Password must be at least 8 characters long"),
+      PatternValidator(r'(?=.*[A-Z])', errorText: "Password must contain at least one uppercase letter"),
+      PatternValidator(r'(?=.*[a-z])', errorText: "Password must contain at least one lowercase letter"),
+      PatternValidator(r'(?=.*\d)', errorText: "Password must contain at least one digit"),
+      PatternValidator(r'(?=.*[@$!%*?&])', errorText: "Password must contain at least one special character"),
+    ],
+  );
+
   static MultiValidator validatePasswordMatch(
       String password, String confirmPassword) {
     return MultiValidator(

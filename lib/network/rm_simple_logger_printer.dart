@@ -37,14 +37,18 @@ class RmSimpleLogPrinter extends LogPrinter {
     List<String> result = [];
 
     for (var line in output.split('\n')) {
-      result.addAll(pattern.allMatches(line).map((match) {
-        if (kReleaseMode) {
-          return match.group(0)!;
-        } else {
-          if(color != null) return color('$emoji ${match.group(0)}');
-          return '$emoji ${match.group(0)}';
-        }
-      }));
+      result.addAll(
+        pattern.allMatches(line).map(
+          (match) {
+            if (kReleaseMode) {
+              return match.group(0)!;
+            } else {
+              if (color != null) return color('$emoji ${match.group(0)}');
+              return '$emoji ${match.group(0)}';
+            }
+          },
+        ),
+      );
     }
 
     return result;

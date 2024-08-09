@@ -27,9 +27,7 @@ Logger rmGetLogger(
       excludeLogsFromClasses: excludeLogsFromClasses,
     ),
     output: RmMultiLoggerOutput(
-      [
-        ConsoleOutput(),
-      ],
+      [ConsoleOutput()],
     ),
   );
 }

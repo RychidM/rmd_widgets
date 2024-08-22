@@ -21,6 +21,10 @@ class RmLabelTextField extends StatelessWidget {
   final bool useSuffixShadow;
   final bool? filled;
   final Color? fillColor;
+  final double contentPaddingLeft;
+  final double contentPaddingRight;
+  final double contentPaddingTop;
+  final double contentPaddingBottom;
   final FormFieldValidator<String>? validator;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
@@ -35,6 +39,12 @@ class RmLabelTextField extends StatelessWidget {
   final Color? labelDarkModeTextColor;
   final double fieldBorderRadius;
   final double prefixSize;
+  final InputBorder? border;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final InputBorder? focusedErrorBorder;
+  final InputBorder? disabledBorder;
+  final InputBorder? errorBorder;
   final FocusNode? focusNode;
   final Function(String)? onFieldSubmitted;
   final Function()? onEditingComplete;
@@ -53,6 +63,10 @@ class RmLabelTextField extends StatelessWidget {
     this.onTap,
     this.onEditingComplete,
     this.fieldBorderRadius = 5.7,
+    this.contentPaddingRight = 10.0,
+    this.contentPaddingLeft = 10.0,
+    this.contentPaddingTop = 10.0,
+    this.contentPaddingBottom = 10.0,
     this.labelFontWeight,
     this.isReadOnly = false,
     this.isDropDown = false,
@@ -63,6 +77,7 @@ class RmLabelTextField extends StatelessWidget {
     this.suffix,
     this.prefix,
     this.filled,
+    this.border,
     this.onFieldSubmitted,
     this.inputFormatters,
     this.focusNode,
@@ -73,6 +88,11 @@ class RmLabelTextField extends StatelessWidget {
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
     required this.onInputChanged,
+    this.disabledBorder,
+    this.focusedErrorBorder,
+    this.focusedBorder,
+    this.enabledBorder,
+    this.errorBorder,
   });
 
   @override
@@ -125,7 +145,17 @@ class RmLabelTextField extends StatelessWidget {
       onTap: onTap,
       prefixIcon: prefix,
       constrainPrefix: true,
+      contentPaddingBottom: contentPaddingBottom,
+      contentPaddingLeft: contentPaddingLeft,
+      contentPaddingRight: contentPaddingRight,
+      contentPaddingTop: contentPaddingTop,
       onEditingComplete: onEditingComplete,
+      enabledBorder: enabledBorder,
+      disabledBorder: disabledBorder,
+      focusedErrorBorder: focusedBorder,
+      focusedBorder: focusedBorder,
+      errorBorder: errorBorder,
+      noBorder: border ?? InputBorder.none,
       inputFormatters: inputFormatters,
       validator: validator,
       hideBorder: hideBorder,

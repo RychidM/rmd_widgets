@@ -31,7 +31,7 @@ class RmButton extends StatelessWidget {
     super.key,
     this.label,
     this.labelLoading,
-    this.color = const Color(0xFF040707),
+    this.color /*= const Color(0xFF040707)*/,
     this.labelColor = Colors.white,
     this.loadingColor = Colors.white,
     this.isDarkMode = false,
@@ -74,7 +74,7 @@ class RmButton extends StatelessWidget {
                 : const Color.fromRGBO(160, 160, 160, 0.57),
             disabledBackgroundColor:
                 isDarkMode ? Colors.grey.shade600 : const Color(0xFFDEE1E7),
-            backgroundColor: isDarkMode ? darkModeColor : color,
+            backgroundColor: /*isDarkMode ? darkModeColor :*/ color,
             shape: RoundedRectangleBorder(
               side: side ?? BorderSide.none,
               borderRadius: BorderRadius.circular(buttonCornerRadius ?? 4),

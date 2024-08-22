@@ -21,21 +21,28 @@ class RmTextFormField extends StatelessWidget {
   final int? maxLength;
   final FormFieldValidator<String>? validator;
   final Function(String)? onFieldSubmitted;
-  final double contentPaddingLeft;
-  final double contentPaddingRight;
-  final double contentPaddingTop;
-  final double contentPaddingBottom;
+  final double? contentPaddingLeft;
+  final double? contentPaddingRight;
+  final double? contentPaddingTop;
+  final double? contentPaddingBottom;
+  final double contentPaddingAll;
   final List<TextInputFormatter>? inputFormatters;
-  final InputBorder noBorder;
+  final InputBorder? noBorder;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusedBorder;
+  final InputBorder? focusedErrorBorder;
+  final InputBorder? disabledBorder;
+  final InputBorder? errorBorder;
   final bool? filled;
   final Color? fillColor;
   final Color? hintTextColor;
   final double? prefixSize;
+  final Color? cursorColor;
   final double? suffixSize;
   final double fieldBorderRadius;
   final FocusNode? focusNode;
   final int? minLines;
-  final int maxLines;
+  final int? maxLines;
   final Function()? onEditingComplete;
 
   const RmTextFormField({
@@ -50,10 +57,12 @@ class RmTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.isReadOnly = false,
     this.isDropDown = false,
-    this.contentPaddingRight = 10.0,
-    this.contentPaddingLeft = 10.0,
-    this.contentPaddingTop = 10.0,
-    this.contentPaddingBottom = 10.0,
+    this.contentPaddingRight,
+    this.contentPaddingLeft,
+    this.contentPaddingTop,
+    this.contentPaddingBottom,
+    this.contentPaddingAll = 10,
+    this.cursorColor,
     this.isDarkMode = false,
     this.constrainPrefix = true,
     this.inputFormatters,
@@ -66,13 +75,14 @@ class RmTextFormField extends StatelessWidget {
     this.onChanged,
     this.maxLength,
     this.minLines,
-    this.maxLines = 1,
+    this.maxLines,
     this.filled,
     this.fillColor,
     this.validator,
     this.hideBorder = false,
     this.onFieldSubmitted,
     this.noBorder = InputBorder.none,
+    this.enabledBorder, this.disabledBorder, this.focusedBorder, this.focusedErrorBorder, this.errorBorder,
   });
 
   @override
@@ -97,14 +107,15 @@ class RmTextFormField extends StatelessWidget {
       onEditingComplete: onEditingComplete,
       onTap: onTap,
       enableInteractiveSelection: true,
-      cursorColor: isDarkMode ? Colors.white : Colors.black,
+      cursorColor:  cursorColor,
       decoration: InputDecoration(
         isDense: true,
+
         contentPadding: EdgeInsets.fromLTRB(
-          contentPaddingLeft,
-          contentPaddingTop,
-          contentPaddingRight,
-          contentPaddingBottom,
+          contentPaddingLeft ?? contentPaddingAll,
+          contentPaddingTop ?? contentPaddingAll,
+          contentPaddingRight ?? contentPaddingAll,
+          contentPaddingBottom ?? contentPaddingAll,
         ),
         hintText: hintText,
         filled: filled,
@@ -172,7 +183,7 @@ class RmTextFormField extends StatelessWidget {
                     width: isDarkMode ? 1 : 0.5),
               ),
         focusedBorder: hideBorder
-            ? noBorder
+            ? focusedBorder
             : OutlineInputBorder(
                 borderRadius: BorderRadius.circular(fieldBorderRadius),
                 borderSide: BorderSide(
@@ -185,14 +196,14 @@ class RmTextFormField extends StatelessWidget {
               color: theme.colorScheme.error, width: isDarkMode ? 1 : 0.5),
         ),
         focusedErrorBorder: hideBorder
-            ? noBorder
+            ? focusedErrorBorder
             : OutlineInputBorder(
                 borderRadius: BorderRadius.circular(fieldBorderRadius),
                 borderSide: BorderSide(
                     color: theme.colorScheme.error,
                     width: isDarkMode ? 1 : 0.5),
               ),
-        disabledBorder: OutlineInputBorder(
+        disabledBorder: disabledBorder ?? OutlineInputBorder(
           borderRadius: BorderRadius.circular(fieldBorderRadius),
           borderSide: BorderSide(
               color: theme.disabledColor, width: isDarkMode ? 1 : 0.5),

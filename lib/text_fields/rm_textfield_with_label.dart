@@ -28,7 +28,7 @@ class RmLabelTextField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
-  final Function onInputChanged;
+  final Function(String)? onInputChanged;
   final Widget? suffix;
   final Widget? prefix;
   final List<TextInputFormatter>? inputFormatters;
@@ -46,6 +46,7 @@ class RmLabelTextField extends StatelessWidget {
   final InputBorder? disabledBorder;
   final InputBorder? errorBorder;
   final FocusNode? focusNode;
+  final int maxLines;
   final Function(String)? onFieldSubmitted;
   final Function()? onEditingComplete;
 
@@ -83,11 +84,12 @@ class RmLabelTextField extends StatelessWidget {
     this.focusNode,
     this.prefixSize = 24,
     this.fillColor,
+    this.maxLines = 1,
     this.useSuffixShadow = false,
     this.labelTextStyle,
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
-    required this.onInputChanged,
+    this.onInputChanged,
     this.disabledBorder,
     this.focusedErrorBorder,
     this.focusedBorder,
@@ -161,6 +163,7 @@ class RmLabelTextField extends StatelessWidget {
       hideBorder: hideBorder,
       textInputAction: textInputAction,
       textInputType: textInputType,
+      maxLines: maxLines,
       prefixSize: prefixSize,
       fieldBorderRadius: fieldBorderRadius,
       suffixIcon: isDarkMode
@@ -174,7 +177,7 @@ class RmLabelTextField extends StatelessWidget {
                       child: suffix!)
                   : null)
               : suffix,
-      onChanged: (value) => onInputChanged(value),
+      onChanged: onInputChanged,
     );
   }
 

@@ -19,3 +19,10 @@ class ExceptionStatusWithMessage extends StateStatus {
 
   const ExceptionStatusWithMessage({required this.message});
 }
+
+
+class SubmissionPassed extends StateStatus {
+
+  const SubmissionPassed();
+}
+

@@ -37,7 +37,9 @@ class RmTextFormField extends StatelessWidget {
   final Color? fillColor;
   final Color? hintTextColor;
   final double? prefixSize;
+  final double textFont;
   final Color? cursorColor;
+  final Color? textColor;
   final double? suffixSize;
   final double fieldBorderRadius;
   final FocusNode? focusNode;
@@ -81,7 +83,7 @@ class RmTextFormField extends StatelessWidget {
     this.validator,
     this.hideBorder = false,
     this.onFieldSubmitted,
-    this.noBorder = InputBorder.none,
+    this.noBorder = InputBorder.none, this.textColor, this.textFont = 18,
     this.enabledBorder, this.disabledBorder, this.focusedBorder, this.focusedErrorBorder, this.errorBorder,
   });
 
@@ -92,7 +94,7 @@ class RmTextFormField extends StatelessWidget {
     return TextFormField(
       focusNode: focusNode,
       controller: controller,
-      style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18),
+      style: theme.textTheme.bodyLarge?.copyWith(fontSize: textFont, color: textColor),
       readOnly: isDropDown ? true : isReadOnly,
       keyboardType: textInputType,
       textInputAction: textInputAction,

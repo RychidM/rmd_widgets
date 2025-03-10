@@ -1,10 +1,10 @@
 import 'package:pinput/pinput.dart';
 import 'package:smart_auth/smart_auth.dart';
 
-class SmartSmsRetrieverService implements SmsRetriever {
+class RMSmartSmsRetrieverService implements SmsRetriever {
   final SmartAuth smartAuth;
 
-  SmartSmsRetrieverService(this.smartAuth);
+  RMSmartSmsRetrieverService(this.smartAuth);
   @override
   Future<void> dispose() {
     return smartAuth.removeSmsListener();

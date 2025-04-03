@@ -46,6 +46,7 @@ class RmTextFormField extends StatelessWidget {
   final int? minLines;
   final int? maxLines;
   final Function()? onEditingComplete;
+  final InputDecoration? decoration;
 
   const RmTextFormField({
     super.key,
@@ -83,7 +84,7 @@ class RmTextFormField extends StatelessWidget {
     this.validator,
     this.hideBorder = false,
     this.onFieldSubmitted,
-    this.noBorder = InputBorder.none, this.textColor, this.textFont = 18,
+    this.noBorder = InputBorder.none, this.textColor, this.textFont = 18, this.decoration,
     this.enabledBorder, this.disabledBorder, this.focusedBorder, this.focusedErrorBorder, this.errorBorder,
   });
 
@@ -110,9 +111,8 @@ class RmTextFormField extends StatelessWidget {
       onTap: onTap,
       enableInteractiveSelection: true,
       cursorColor:  cursorColor,
-      decoration: InputDecoration(
+      decoration: decoration ?? InputDecoration(
         isDense: true,
-
         contentPadding: EdgeInsets.fromLTRB(
           contentPaddingLeft ?? contentPaddingAll,
           contentPaddingTop ?? contentPaddingAll,

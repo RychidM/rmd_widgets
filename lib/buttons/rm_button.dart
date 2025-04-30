@@ -27,6 +27,7 @@ class RmButton extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final BorderSide? side;
   final Color disabledColor;
+  final BorderSide? borderSide;
 
   const RmButton({
     super.key,
@@ -49,7 +50,7 @@ class RmButton extends StatelessWidget {
     this.isButtonDisabled = false,
     this.height = 60,
     this.labelSize = 16,
-    this.margin, this.side, this.disabledColor = const Color(0xFFDEE1E7),
+    this.margin, this.side, this.disabledColor = const Color(0xFFDEE1E7), this.borderSide,
   });
 
   @override
@@ -76,6 +77,7 @@ class RmButton extends StatelessWidget {
             disabledBackgroundColor:
                 isDarkMode ? Colors.grey.shade600 : disabledColor,
             backgroundColor: /*isDarkMode ? darkModeColor :*/ color,
+            side: borderSide,
             shape: RoundedRectangleBorder(
               side: side ?? BorderSide.none,
               borderRadius: BorderRadius.circular(buttonCornerRadius ?? 4),

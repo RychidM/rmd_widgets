@@ -28,12 +28,13 @@ class RmButton extends StatelessWidget {
   final BorderSide? side;
   final Color disabledColor;
   final BorderSide? borderSide;
+  final Color? btnOverlay;
 
   const RmButton({
     super.key,
     this.label,
     this.labelLoading,
-    this.color /*= const Color(0xFF040707)*/,
+    this.color/*= const Color(0xFF040707)*/,
     this.labelColor = Colors.white,
     this.loadingColor = Colors.white,
     this.isDarkMode = false,
@@ -50,7 +51,11 @@ class RmButton extends StatelessWidget {
     this.isButtonDisabled = false,
     this.height = 60,
     this.labelSize = 16,
-    this.margin, this.side, this.disabledColor = const Color(0xFFDEE1E7), this.borderSide,
+    this.margin,
+    this.side,
+    this.disabledColor = const Color(0xFFDEE1E7),
+    this.borderSide,
+    this.btnOverlay = Colors.transparent,
   });
 
   @override
@@ -71,6 +76,7 @@ class RmButton extends StatelessWidget {
                     onTap.call();
                   }),
         style: ElevatedButton.styleFrom(
+            overlayColor: btnOverlay,
             disabledForegroundColor: isDarkMode
                 ? Colors.grey.shade800
                 : const Color.fromRGBO(160, 160, 160, 0.57),

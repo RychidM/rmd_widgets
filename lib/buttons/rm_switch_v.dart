@@ -9,7 +9,7 @@ class RMCustomSwitch extends StatefulWidget {
   const RMCustomSwitch({
     super.key,
     required this.onToggle,
-    this.backgroundColor = Colors.white54,
+    this.backgroundColor = Colors.white38,
     this.activeBgColor,
   });
 

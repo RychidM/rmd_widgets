@@ -5,20 +5,20 @@ class RMSmartSmsRetrieverService implements SmsRetriever {
   final SmartAuth smartAuth;
 
   RMSmartSmsRetrieverService(this.smartAuth);
+
   @override
   Future<void> dispose() {
-    return smartAuth.removeSmsListener();
+    return smartAuth.removeSmsRetrieverApiListener();
   }
 
   @override
   Future<String?> getSmsCode() async {
-    final response = await smartAuth.getSmsCode(
-      useUserConsentApi: true,
-    );
-    if(response.succeed && response.codeFound) {
-      return response.code;
+    try {
+      final response = await smartAuth.getSmsWithUserConsentApi();
+      return response.data?.code;
+    } on Exception {
+      rethrow;
     }
-    return null;
   }
 
   @override
